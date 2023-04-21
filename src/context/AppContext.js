@@ -59,7 +59,11 @@ export const AppReducer = (state, action) => {
             };
         case 'SET_BUDGET':
             action.type = "DONE";
-            state.budget = action.payload;
+            if (action.payload>state.budgetMax) {
+                alert("The value cannot exceed maximum budget of "+state.currency+" "+state.budgetMax)
+            } else {
+                state.budget = action.payload;
+            }
             return {
                 ...state,
             };
@@ -77,6 +81,7 @@ export const AppReducer = (state, action) => {
 // 1. Sets the initial state when the app loads
 const initialState = {
     budget: 2000,
+    budgetMax: 20000,
     expenses: [
         { id: "Marketing", name: 'Marketing', cost: 50 },
         { id: "Finance", name: 'Finance', cost: 300 },
