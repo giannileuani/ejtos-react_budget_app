@@ -18,7 +18,6 @@ const Budget = () => {
                 id='cost'
                 step="10"
                 value={budget}
-                // value={cost}
                 style={{ marginLeft: '2rem' , size: 10}}
                  onChange={(event) => setBudget(event.target.value)}
                 >

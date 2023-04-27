@@ -3,14 +3,15 @@ import React, { createContext, useReducer } from 'react';
 // 5. The reducer - this is used to update the state, based on the action
 export const AppReducer = (state, action) => {
     let budget = 0;
+    let total_budget = 0;
+        total_budget = state.expenses.reduce(
+            (previousExp, currentExp) => {
+                return previousExp + currentExp.cost
+            },0
+        );
     switch (action.type) {
         case 'ADD_EXPENSE':
-            let total_budget = 0;
-            total_budget = state.expenses.reduce(
-                (previousExp, currentExp) => {
-                    return previousExp + currentExp.cost
-                },0
-            );
+            
             total_budget = total_budget + action.payload.cost;
             action.type = "DONE";
             if(total_budget <= state.budget) {
@@ -46,12 +47,12 @@ export const AppReducer = (state, action) => {
         case 'DELETE_EXPENSE':
             action.type = "DONE";
             state.expenses.map((currentExp)=> {
-            if (currentExp.name === action.payload) {
-                budget = state.budget + currentExp.cost
-                currentExp.cost =  0;
-            }
-            return currentExp
-            })
+                if (currentExp.name === action.payload) {
+                    budget = state.budget + currentExp.cost
+                    currentExp.cost =  0;
+                }
+                return currentExp
+                })
             action.type = "DONE";
             return {
                 ...state,
@@ -60,7 +61,9 @@ export const AppReducer = (state, action) => {
         case 'SET_BUDGET':
             action.type = "DONE";
             if (action.payload>state.budgetMax) {
-                alert("The value cannot exceed maximum budget of "+state.currency+" "+state.budgetMax)
+                alert("The value cannot exceed maximum ###budget of "+state.currency+" "+state.budgetMax)
+            } else if (action.payload<total_budget) {
+                alert("You cannot reduce the budget value lower than the spending")            
             } else {
                 state.budget = action.payload;
             }
