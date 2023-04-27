@@ -10,8 +10,7 @@ export const AppReducer = (state, action) => {
             },0
         );
     switch (action.type) {
-        case 'ADD_EXPENSE':
-            
+        case 'ADD_EXPENSE':            
             total_budget = total_budget + action.payload.cost;
             action.type = "DONE";
             if(total_budget <= state.budget) {
@@ -94,7 +93,8 @@ const initialState = {
         { id: "Admin",name: 'Admin', cost: 23},
         { id: "Moving", name: 'Moving', cost: 101},
     ],
-    currency: '£'
+    currency: '£',
+    currencyName: "Pound",
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
@@ -121,7 +121,8 @@ export const AppProvider = (props) => {
                 budget: state.budget,
                 remaining: remaining,
                 dispatch,
-                currency: state.currency
+                currency: state.currency,
+                currencyName: state.currencyName
             }}
         >
             {props.children}
