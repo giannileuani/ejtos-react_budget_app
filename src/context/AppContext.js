@@ -60,7 +60,7 @@ export const AppReducer = (state, action) => {
         case 'SET_BUDGET':
             action.type = "DONE";
             if (action.payload>state.budgetMax) {
-                alert("The value cannot exceed maximum ###budget of "+state.currency+" "+state.budgetMax)
+                alert("The value cannot exceed maximum budget of "+state.currency+" "+state.budgetMax)
             } else if (action.payload<total_budget) {
                 alert("You cannot reduce the budget value lower than the spending")            
             } else {
@@ -72,6 +72,7 @@ export const AppReducer = (state, action) => {
         case 'CHG_CURRENCY':
             action.type = "DONE";
             state.currency = action.payload;
+            state.currencyName = currencySymbolLookup[state.currency];
             return {
                 ...state
             }
@@ -79,7 +80,12 @@ export const AppReducer = (state, action) => {
             return state;
     }
 };
-
+const currencySymbolLookup = {
+    "$": "Dollar",
+    "£": "Pound",
+    "€":"Euro",
+    "₹":"Ruppee"
+}
 // 1. Sets the initial state when the app loads
 const initialState = {
     budget: 2000,

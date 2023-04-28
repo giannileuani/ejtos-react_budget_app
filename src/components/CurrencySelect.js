@@ -2,24 +2,24 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 const CurrencySelect = () => {
     const { currency } = useContext(AppContext);
+    const { currencyName } = useContext(AppContext);
     const { dispatch  } = useContext(AppContext);
-    const setBudget = (value) => {
+    const setCurrency = (value) => {
         dispatch ({
-            type: 'SET_BUDGET',
+            type: 'CHG_CURRENCY',
             payload: value,
         });
     }
     return (
-        <div className='alert alert-secondary'>
-            <span>Budget: {currency}</span>
-            <select className="custom-select" id="currencySelect"
-            // onChange={(event) => setName(event.target.value)}
-            >
-                <option defaultValue>Choose...</option>
-                <option value="Dollar" name="dollar">$ Dollar</option>
-                <option value="Pound" name="pound">£ Pound</option>
-                <option value="Euro" name="euro">€ Euro</option>
-                <option value="Ruppee" name="Ruppee">₹ Ruppee</option>
+        <div className='alert alert-secondary greenish_1 whitish_1'>
+            <span>Budget: ({currency} {currencyName})</span>
+            <select className="custom-select greenish_1" id="currencySelect"
+            onChange={(event) => setCurrency(event.target.value)}>
+                
+                <option value="$" name="dollar">$ Dollar</option>
+                <option value="£" name="pound" >£ Pound</option>
+                <option value="€" name="euro" >€ Euro</option>
+                <option value="₹" name="ruppee" >₹ Ruppee</option>
                   </select>
         </div>
     );
