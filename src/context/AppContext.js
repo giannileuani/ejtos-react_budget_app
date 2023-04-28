@@ -11,13 +11,12 @@ export const AppReducer = (state, action) => {
         );
     switch (action.type) {
         case 'ADD_EXPENSE':            
-            total_budget = total_budget + action.payload.cost;
+            total_budget = Math.max(total_budget + action.payload.cost,0);
             action.type = "DONE";
             if(total_budget <= state.budget) {
-                total_budget = 0;
                 state.expenses.map((currentExp)=> {
                     if(currentExp.name === action.payload.name) {
-                        currentExp.cost = action.payload.cost + currentExp.cost;
+                        currentExp.cost = Math.max(0,action.payload.cost + currentExp.cost);
                     }
                     return currentExp
                 });
@@ -36,7 +35,7 @@ export const AppReducer = (state, action) => {
                     currentExp.cost =  currentExp.cost - action.payload.cost;
                     budget = state.budget + action.payload.cost
                 }
-                return currentExp
+                return currentExp;
             })
             action.type = "DONE";
             return {
