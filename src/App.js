@@ -9,6 +9,7 @@ import ExpenseList from './components/ExpenseList';
 import ExpenseItem from './components/ExpenseItem';
 import AllocationForm from './components/AllocationForm';
 import CurrencySelect from './components/CurrencySelect';
+import './App.css';
 
 import { AppProvider } from './context/AppContext';
 const App = () => {

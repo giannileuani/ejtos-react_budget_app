@@ -4,6 +4,7 @@ const Budget = () => {
     const { budget } = useContext(AppContext);
     const { dispatch  } = useContext(AppContext);
     const { currency } = useContext(AppContext);
+    // const {currencyName} = useContext(AppContext);
     const setBudget = (value) => {
         dispatch ({
             type: 'SET_BUDGET',
