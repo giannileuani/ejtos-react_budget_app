@@ -33,6 +33,11 @@
 .whitish_1 {
     color: white;
 }
+.sameLine_1 {
+    white-space: nowrap;
+    display: inline-block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

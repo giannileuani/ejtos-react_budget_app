@@ -4,7 +4,6 @@ const Budget = () => {
     const { budget } = useContext(AppContext);
     const { dispatch  } = useContext(AppContext);
     const { currency } = useContext(AppContext);
-    // const {currencyName} = useContext(AppContext);
     const setBudget = (value) => {
         dispatch ({
             type: 'SET_BUDGET',
@@ -12,9 +11,9 @@ const Budget = () => {
         });
     }
     return (
-        <div className='alert alert-secondary'>
+        <div className='alert alert-secondary sameLine_1'>
             <div className="input-group-prepend">
-                <label>Budget: {currency}</label>
+                <label for='cost'>Budget: {currency}</label>
             </div>
             <input
                 required='required'
